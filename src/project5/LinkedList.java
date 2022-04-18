@@ -1,7 +1,8 @@
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
-// I will not lie, cheat, or steal, nor will I accept the actions of those who do.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
 // - Samuel Klemic 9063-12128
 
 package project5;
@@ -18,13 +19,13 @@ import list.ListInterface;
  * 
  * @version 04.11.2022
  */
-public class LinkedList<E> implements ListInterface<E>{
+public class LinkedList<E> implements ListInterface<E> {
 
     private Node<E> first;
-    
+    private int size;
+
     private static class Node<E> {
         private Node<E> next;
-        private Node<E> previous;
         private E data;
 
         /**
@@ -35,6 +36,19 @@ public class LinkedList<E> implements ListInterface<E>{
          */
         public Node(E d) {
             data = d;
+        }
+
+
+        /**
+         * Creates new node with data d and next node
+         * 
+         * @param d
+         *            data to put in node
+         * @param next
+         *            node to set as next
+         */
+        public Node(E d, Node<E> next) {
+
         }
 
 
@@ -50,33 +64,12 @@ public class LinkedList<E> implements ListInterface<E>{
 
 
         /**
-         * Sets the node before this one
-         *
-         * @param n
-         *            the node before this one
-         */
-        public void setPrevious(Node<E> n) {
-            previous = n;
-        }
-
-
-        /**
          * Gets the next node
          *
          * @return the next node
          */
         public Node<E> next() {
             return next;
-        }
-
-
-        /**
-         * Gets the node before this one
-         *
-         * @return the node before this one
-         */
-        public Node<E> previous() {
-            return previous;
         }
 
 
@@ -135,25 +128,83 @@ public class LinkedList<E> implements ListInterface<E>{
 
     }
 
-
-    @Override
-    public void add(E arg0) {
-        // TODO Auto-generated method stub
-        
+    /**
+     * Constructs and empty linked list
+     */
+    public LinkedList() {
+        first = null;
     }
 
 
+    /**
+     * Constructs a linked list with a first value
+     * 
+     * @param value
+     *            first value in list
+     */
+    public LinkedList(E value) {
+        first = new Node<E>(value);
+        size = 1;
+    }
+
+
+    /**
+     * Adds param element to the end of list
+     * 
+     * @param value
+     */
     @Override
-    public void add(int arg0, E arg1) {
-        // TODO Auto-generated method stub
-        
+    public void add(E value) {
+        if (first == null) {
+            first = new Node<E>(value);
+            size++;
+        }
+        else {
+            Node<E> curr = first;
+
+            while (curr.next() != null) {
+                curr = curr.next();
+            }
+
+            curr.setNext(new Node<E>(value));
+            size++;
+        }
+
+    }
+
+
+    /**
+     * Adds a new node of value at an index
+     * 
+     * @param index
+     *            index at which the node will be added
+     * @param value
+     *            value to be added
+     */
+    @Override
+    public void add(int index, E value) {
+        if (index < 0 || size < index) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        if (value == null) {
+            throw new IllegalArgumentException();
+        }
+
+        Node<E> curr = first;
+
+        for (int i = 0; i < index; i++) {
+            curr = curr.next();
+        }
+
+        curr.setNext(new Node<E>(value, curr.next()));
     }
 
 
     @Override
     public void clear() {
         // TODO Auto-generated method stub
-        
+
     }
 
 
@@ -171,17 +222,25 @@ public class LinkedList<E> implements ListInterface<E>{
     }
 
 
+    /**
+     * Returns the size of the list as an int
+     * 
+     * @return size of list
+     */
     @Override
     public int getLength() {
-        // TODO Auto-generated method stub
-        return 0;
+        return size;
     }
 
 
+    /**
+     * Checks if the list is empty
+     * 
+     * @return boolean for emptiness
+     */
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return size == 0;
     }
 
 

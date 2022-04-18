@@ -1,5 +1,7 @@
 package project5;
 
-public class DataHandlerTest extends DataHandler {
+import student.TestCase;
+
+public class DataHandlerTest extends TestCase {
 
 }
