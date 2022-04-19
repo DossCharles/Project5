@@ -137,7 +137,7 @@ public class DataHandler {
 
 
     /**
-     * Way for other classes to access our state class
+     * Getter method for states
      * 
      * @return the states
      */
