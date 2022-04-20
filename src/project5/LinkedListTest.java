@@ -1,5 +1,7 @@
 package project5;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import student.TestCase;
 
 /**
@@ -37,6 +39,14 @@ public class LinkedListTest extends TestCase {
      * Tests the remove() and remove(E) methods
      */
     public void testRemove() {
+        
+        try {
+            list1.remove();
+        }
+        catch (IndexOutOfBoundsException e){
+            assertEquals("The list is empty", e.getMessage());
+        }
+        
         list1.add("A");
         assertEquals(1, list1.size());
         list1.add("B");
@@ -55,6 +65,13 @@ public class LinkedListTest extends TestCase {
         assertEquals(1, list1.size());
         
         assertEquals("(A)", list1.toString());
+        
+        try {
+            list1.remove(null);
+        }
+        catch (IllegalArgumentException e){
+            assertEquals(null, e.getMessage());
+        }
     }
     
     /**
@@ -91,5 +108,35 @@ public class LinkedListTest extends TestCase {
         for (int i = 0; i < list1.size(); i++) {
             assertEquals(arrayTest[i], list1.toArray()[i]);
         }
+    }
+    
+    
+    /**
+     * Tests iterator
+     */
+    public void testIterators() {
+
+        list1.add("A");
+        list1.add("B");
+        list1.add("C");
+        list1.add("D");
+        
+        Iterator<String> iter = list1.iterator();
+
+        assertTrue(iter.hasNext());
+        assertEquals("B", iter.next());
+        assertTrue(iter.hasNext());
+        assertEquals("C", iter.next());
+        assertTrue(iter.hasNext());
+        assertEquals("D", iter.next());
+        assertFalse(iter.hasNext());
+        
+        try {
+            iter.next();
+        }
+        catch (NoSuchElementException e) {
+            assertEquals(null, e.getMessage());
+        }
+
     }
 }

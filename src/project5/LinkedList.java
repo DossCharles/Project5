@@ -195,6 +195,15 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         builder.append(")");
         return builder.toString();
     }
+    
+    /**
+     * Iterator method creates Iterator object
+     *
+     * @return new Iterator object
+     */
+    public LLIterator<E> iterator() {
+        return new LLIterator<E>();
+    }
 
     
     private static class Node<E> {
@@ -266,6 +275,13 @@ public class LinkedList<E> implements LinkedListInterface<E> {
     }
 
 
+    /**
+     * Internal iterator class
+     * 
+     * @author Sam
+     *
+     * @param <E>
+     */
     private class LLIterator<E> implements Iterator<E> {
 
         private Node<E> next;
@@ -285,7 +301,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
          */
         @Override
         public boolean hasNext() {
-            return (next.next().getData() != null);
+            return (next.next() != null);
         }
 
 
@@ -298,14 +314,19 @@ public class LinkedList<E> implements LinkedListInterface<E> {
          */
         @Override
         public E next() {
-            E data = next.next().getData();
-
-            if (data == null) {
+            if (hasNext()) {
+                E data = next.next().getData();
+    
+                if (data == null) {
+                    throw new NoSuchElementException();
+                }
+    
+                next = next.next();
+                return data;
+            }
+            else {
                 throw new NoSuchElementException();
             }
-
-            next = next.next();
-            return data;
         }
 
     }
