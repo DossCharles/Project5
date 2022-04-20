@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 import list.ListInterface;
 
 /**
+ * Linked List of nodes with implemented methods
  * 
  * @author Sam
  *
@@ -19,11 +20,183 @@ import list.ListInterface;
  * 
  * @version 04.11.2022
  */
-public class LinkedList<E> implements ListInterface<E> {
+public class LinkedList<E> implements LinkedListInterface<E> {
 
     private Node<E> first;
     private int size;
 
+    /**
+     * Constructs an empty LinkedList
+     */
+    public LinkedList() {
+        first = null;
+        size = 0;
+    }
+    
+    /**
+     * Constructs a list with a first node
+     * @param firstNode
+     */
+    public LinkedList(Node<E> firstNode) {
+        first = firstNode;
+        size = 1;
+    }
+    
+    
+    /**
+     * Adds the param item to the end of the list
+     * 
+     * @param value
+     *      value to be added to the list
+     */
+    @Override
+    public void add(E value) {
+        if (first == null) {
+            first = new Node<E>(value);
+            size++;
+        }
+        else {
+            Node<E> curr = first;
+            
+            while (curr.next() != null) {
+                curr = curr.next();
+            }
+            
+            curr.setNext(new Node<E>(value));
+            size++;
+        }
+    }
+
+    /**
+     * Removes the last node in the list
+     * @return data in removed node
+     */
+    @Override
+    public E remove() {
+        E removed = null;
+        
+        if (first == null) {
+            throw new IndexOutOfBoundsException("The list is empty");
+        }
+        else if (first.next() == null) {
+            removed = first.getData();
+            first = null;
+            size--;
+        }
+        else {
+            Node<E> curr = first;
+            
+            while (curr.next().next() != null) {
+                curr = curr.next();
+            }
+            
+            removed = curr.next().getData();
+            curr.setNext(null);
+            size--;
+        }
+        return removed;
+    }
+
+
+    /**
+     * Removes param value from list
+     */
+    @Override
+    public E remove(E value) {
+        if (value == null) {
+            throw new IllegalArgumentException();
+        }
+        
+        Node<E> curr = first;
+        
+        while(curr.next() != null) {
+            if (curr.next().getData() == value) {
+                E removed = curr.next().getData();
+                curr.setNext(curr.next().next());
+                size--;
+                return removed;
+            }
+            curr = curr.next();
+        }
+        
+        return null;
+    }
+
+    
+    /**
+     * Clears the list
+     */
+    @Override
+    public void clear() {
+        while (!isEmpty()) {
+            remove();
+        }
+    }
+
+
+    /**
+     * Returns boolean for if list is empty
+     * 
+     * @return boolean for emptiness
+     */
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+
+    /**
+     * Returns the size of the list
+     * 
+     * @return size
+     */
+    @Override
+    public int size() {
+        return size;
+    }
+
+
+    /**
+     * Returns array of linked list
+     * 
+     * @return array
+     */
+    @Override
+    public Object[] toArray() {
+        Object[] array = new Object[size];
+        
+        Node<E> curr = first;
+        for (int i = 0; i < size; i++) {
+            array[i] = curr.getData();
+            curr = curr.next();
+        }
+        
+        return array;
+    }
+    
+    /**
+     * Returns string version of linked list
+     * 
+     * @return string
+     */
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("(");
+        
+        Node<E> curr = first;
+        for (int i = 0; i < size; i++) {
+            builder.append(curr.getData());
+            if (i != size-1) {
+                builder.append(", ");
+            }
+            curr = curr.next();
+        }
+        
+        builder.append(")");
+        return builder.toString();
+    }
+
+    
     private static class Node<E> {
         private Node<E> next;
         private E data;
@@ -81,6 +254,15 @@ public class LinkedList<E> implements ListInterface<E> {
         public E getData() {
             return data;
         }
+        
+        /**
+         * Sets the data of the node to the param
+         * 
+         * @param value
+         */
+        public void setData(E value) {
+            data = value;
+        }
     }
 
 
@@ -126,142 +308,6 @@ public class LinkedList<E> implements ListInterface<E> {
             return data;
         }
 
-    }
-
-    /**
-     * Constructs and empty linked list
-     */
-    public LinkedList() {
-        first = null;
-    }
-
-
-    /**
-     * Constructs a linked list with a first value
-     * 
-     * @param value
-     *            first value in list
-     */
-    public LinkedList(E value) {
-        first = new Node<E>(value);
-        size = 1;
-    }
-
-
-    /**
-     * Adds param element to the end of list
-     * 
-     * @param value
-     */
-    @Override
-    public void add(E value) {
-        if (first == null) {
-            first = new Node<E>(value);
-            size++;
-        }
-        else {
-            Node<E> curr = first;
-
-            while (curr.next() != null) {
-                curr = curr.next();
-            }
-
-            curr.setNext(new Node<E>(value));
-            size++;
-        }
-
-    }
-
-
-    /**
-     * Adds a new node of value at an index
-     * 
-     * @param index
-     *            index at which the node will be added
-     * @param value
-     *            value to be added
-     */
-    @Override
-    public void add(int index, E value) {
-        if (index < 0 || size < index) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        if (value == null) {
-            throw new IllegalArgumentException();
-        }
-
-        Node<E> curr = first;
-
-        for (int i = 0; i < index; i++) {
-            curr = curr.next();
-        }
-
-        curr.setNext(new Node<E>(value, curr.next()));
-    }
-
-
-    @Override
-    public void clear() {
-        // TODO Auto-generated method stub
-
-    }
-
-
-    @Override
-    public boolean contains(E arg0) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-
-    @Override
-    public E getEntry(int arg0) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-    /**
-     * Returns the size of the list as an int
-     * 
-     * @return size of list
-     */
-    @Override
-    public int getLength() {
-        return size;
-    }
-
-
-    /**
-     * Checks if the list is empty
-     * 
-     * @return boolean for emptiness
-     */
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-
-    @Override
-    public E remove(int arg0) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-    @Override
-    public E replace(int arg0, E arg1) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-    @Override
-    public Object[] toArray() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }
