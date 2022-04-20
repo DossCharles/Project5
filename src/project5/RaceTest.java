@@ -23,7 +23,7 @@ public class RaceTest extends TestCase {
     public void setUp() {
         test = new Race("test", 23, 13);
         more = new Race("zanzibar", 20, 19);
-        less = new Race("amish", 20, 1);
+        less = new Race("actor", 20, 1);
     }
 
 
@@ -43,18 +43,19 @@ public class RaceTest extends TestCase {
      * Tests the compareToCFR method.
      */
     public void testCompareToCFR() {
-        assertEquals(-1,test.compareToCFR(more));
-        assertEquals(1,test.compareToCFR(less));
+        assertEquals(-1, test.compareToCFR(more));
+        assertEquals(1, test.compareToCFR(less));
         assertEquals(0, test.compareToCFR(test));
 
     }
-    
+
+
     /**
      * Tests the compareToAlpha method.
      */
     public void testCompareToAlpha() {
-        assertEquals(-1,test.compareToAlpha(more));
-        assertEquals(1,test.compareToAlpha(less));
+        assertEquals(-1, test.compareToAlpha(more));
+        assertEquals(1, test.compareToAlpha(less));
         assertEquals(0, test.compareToAlpha(test));
     }
 

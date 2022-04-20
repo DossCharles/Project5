@@ -61,33 +61,37 @@ public class Race {
     public int getDeaths() {
         return deaths;
     }
-    
+
+
     /**
      * Gets the CFR for the race.
+     * 
      * @return the CFR rounded to 1 decimal.
      */
     public double getCFR() {
-        double temp = ((double)deaths/cases)*100;
+        double temp = ((double)deaths / cases) * 100;
         double scale = 10.0;
-        return Math.round(temp*scale)/scale;
+        return Math.round(temp * scale) / scale;
     }
-    
+
+
     /**
      * Compares two races by CFR.
+     * 
      * @return 1 if this is greater than other.
      */
     public int compareToCFR(Race other) {
-        if(getCFR() > other.getCFR()) {
+        if (getCFR() > other.getCFR()) {
             return 1;
         }
         else if (getCFR() < other.getCFR()) {
             return -1;
         }
         return 0;
-        
-        
+
     }
-    
+
+
     /**
      * Compares two races alphabetically.
      * 
