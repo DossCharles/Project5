@@ -124,6 +124,8 @@ public class LinkedListTest extends TestCase {
         Iterator<String> iter = list1.iterator();
 
         assertTrue(iter.hasNext());
+        assertEquals("A", iter.next());
+        assertTrue(iter.hasNext());
         assertEquals("B", iter.next());
         assertTrue(iter.hasNext());
         assertEquals("C", iter.next());

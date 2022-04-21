@@ -167,6 +167,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
      * 
      * @return array
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Object[] toArray() {
         Object[] array = new Object[size];
@@ -307,7 +308,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
          */
         @Override
         public boolean hasNext() {
-            return (next.next() != null);
+            return (next != null);
         }
 
 
@@ -321,7 +322,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         @Override
         public E next() {
             if (hasNext()) {
-                E data = next.next().getData();
+                E data = next.getData();
     
                 if (data == null) {
                     throw new NoSuchElementException();

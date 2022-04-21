@@ -1,17 +1,18 @@
 package project5;
+
 import student.TestCase;
 
 /**
  * Test class for State
- * @author James Wallace
- * @version 2022/04/20
+ * 
+ * @author James Wallace, Sam Klemic
+ * @version 2022/04/21
  */
-public class StateTest extends TestCase{
+public class StateTest extends TestCase {
     // ~ Fields.................................................................
     private State test;
     private LinkedList<Race> raceList;
-    
-    
+
     // ~ Methods................................................................
     /**
      * Set Up method for the test class.
@@ -23,21 +24,24 @@ public class StateTest extends TestCase{
         raceList.add(new Race("actor", 20, 1));
         test = new State("Virginia", raceList);
     }
-    
+
+
     /**
      * Test method for getStateName().
      */
     public void testGetStateName() {
-        assertEquals("Virginia",test.getStateName());
+        assertEquals("Virginia", test.getStateName());
     }
-    
+
+
     /**
      * Test method for getRaceList().
      */
     public void testGetRaceList() {
-        assertEquals(raceList,test.getRaceList());
+        assertEquals(raceList, test.getRaceList());
     }
-    
+
+
     /**
      * Test method for sortAlpha().
      */
@@ -47,9 +51,13 @@ public class StateTest extends TestCase{
         sorted.add(new Race("test", 23, 13));
         sorted.add(new Race("zanzibar", 20, 19));
         test.sortAlpha();
-        assertEquals(sorted, test.getRaceList());
+        while (!sorted.isEmpty()) {
+            assertEquals(sorted.remove().getRaceName(), ((Race)test
+                .getRaceList().remove()).getRaceName());
+        }
     }
-    
+
+
     /**
      * Test method for sortCFR().
      */
@@ -59,7 +67,10 @@ public class StateTest extends TestCase{
         sorted.add(new Race("test", 23, 13));
         sorted.add(new Race("zanzibar", 20, 19));
         test.sortCFR();
-        assertEquals(sorted, test.getRaceList());
+        while (!sorted.isEmpty()) {
+            assertEquals(sorted.remove().getRaceName(), ((Race)test
+                .getRaceList().remove()).getRaceName());
+        }
     }
 
 }
