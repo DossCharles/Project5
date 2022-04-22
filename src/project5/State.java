@@ -59,7 +59,7 @@ public class State<E> extends LinkedList {
      * Sorts the raceList in alphabetical order.
      */
     public LinkedList<Race> sortAlpha() {
-        String alphabetReference = "abcdefghijklmnopqrstuvwxyz";
+        String alphabetReference = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         LinkedList<Race> sortedList = new LinkedList<Race>();
 
@@ -99,7 +99,7 @@ public class State<E> extends LinkedList {
             Race currentRace = (Race)raceArray[i];
             double currentRaceCFR = currentRace.getCFR();
             int j = i - 1;
-            while (j >= 0 && currentRaceCFR < ((Race)raceArray[j]).getCFR()) {
+            while (j >= 0 && currentRaceCFR > ((Race)raceArray[j]).getCFR()) {
                 raceArray[j + 1] = raceArray[j];
                 j--;
             }

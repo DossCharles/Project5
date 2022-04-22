@@ -102,7 +102,8 @@ public class DataHandler {
                 // We know cases are in the first half while
                 // deaths are in the second half of our data
                 int j = 0;
-                for (int i = 1; i <= (tokens.getLength()); i++) {
+                int k = 0;
+                for (int i = 1; i < (tokens.getLength()); i++) {
                     // This covers the "NA" data problem we
                     // Simply return a -1 which we can then
                     // Deal with in our front end
@@ -113,7 +114,7 @@ public class DataHandler {
                         cases[j++] = (Integer.parseInt(tokens.getEntry(i)));
                     }
                     else {// Second half of data
-                        deaths[j++] = (Integer.parseInt(tokens.getEntry(i)));
+                        deaths[k++] = (Integer.parseInt(tokens.getEntry(i)));
                     }
                 } // end of sorting data
                 lineCount++;
