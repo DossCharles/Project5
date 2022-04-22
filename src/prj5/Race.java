@@ -76,15 +76,22 @@ public class Race {
         double scale = 10.0;
         return Math.round(temp * scale) / scale;
     }
-    
+
+
     /**
      * Returns string value of race
      */
     public String toString() {
         return race + ": " + cases + " cases, " + getCFR() + "% CFR";
     }
-    
-    public String toString() {
+
+
+    /**
+     * A string rep of races
+     * 
+     * @return race deaths and cases
+     */
+    public String toString2() {
         return race + " Cases: " + cases + " Deaths: " + deaths;
     }
 
