@@ -39,24 +39,8 @@ public class RaceTest extends TestCase {
     }
 
 
-    /**
-     * Tests the compareToCFR method.
-     */
-    public void testCompareToCFR() {
-        assertEquals(-1, test.compareToCFR(more));
-        assertEquals(1, test.compareToCFR(less));
-        assertEquals(0, test.compareToCFR(test));
-
-    }
-
-
-    /**
-     * Tests the compareToAlpha method.
-     */
-    public void testCompareToAlpha() {
-        assertEquals(-1, test.compareToAlpha(more));
-        assertEquals(1, test.compareToAlpha(less));
-        assertEquals(0, test.compareToAlpha(test));
+    public void testToString() {
+        assertEquals("test: 23 cases, 56.5% CFR", test.toString());
     }
 
 }

@@ -70,40 +70,18 @@ public class Race {
      */
     public double getCFR() {
         double temp = ((double)deaths / cases) * 100;
+        if (temp == 100 || temp < 0) {
+            return -1;
+        }
         double scale = 10.0;
         return Math.round(temp * scale) / scale;
     }
-
-
+    
     /**
-     * Compares two races by CFR.
-     * 
-     * @return 1 if this is greater than other.
+     * Returns string value of race
      */
-    public int compareToCFR(Race other) {
-        if (getCFR() > other.getCFR()) {
-            return 1;
-        }
-        else if (getCFR() < other.getCFR()) {
-            return -1;
-        }
-        return 0;
-
-    }
-
-
-    /**
-     * Compares two races alphabetically.
-     * 
-     */
-    public int compareToAlpha(Race other) {
-        if (getRaceName().compareTo(other.getRaceName()) > 0) {
-            return 1;
-        }
-        else if (getRaceName().compareTo(other.getRaceName()) < 0) {
-            return -1;
-        }
-        return 0;
+    public String toString() {
+        return race + ": " + cases + " cases, " + getCFR() + "% CFR";
     }
     
     public String toString() {
