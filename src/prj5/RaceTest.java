@@ -12,6 +12,7 @@ import student.TestCase;
 public class RaceTest extends TestCase {
     // ~ Fields.................................................................
     private Race test;
+    private Race test2;
 
     // ~ Methods................................................................
 
@@ -20,6 +21,7 @@ public class RaceTest extends TestCase {
      */
     public void setUp() {
         test = new Race("test", 23, 13);
+        test2 = new Race("test", -1, 13);
     }
 
 
@@ -32,6 +34,9 @@ public class RaceTest extends TestCase {
         assertEquals(23, test.getCases());
         assertEquals(13, test.getDeaths());
         assertEquals(56.5, test.getCFR(), 0.1);
+        assertEquals(-1, test2.getCFR(), 0.1);
+        test2 = new Race("test", 13, -1);
+        assertEquals(-1, test2.getCFR(), 0.1);
     }
 
 

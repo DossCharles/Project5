@@ -51,7 +51,7 @@ public class StateTest extends TestCase {
         sorted.add(new Race("test", 23, 13));
         sorted.add(new Race("zanzibar", 20, 19));
         test.sortAlpha();
-        while (!sorted.isEmpty()) {
+        while (!test.isEmpty()) {
             assertEquals(sorted.remove().getRaceName(), ((Race)test
                 .getRaceList().remove()).getRaceName());
         }
@@ -63,9 +63,9 @@ public class StateTest extends TestCase {
      */
     public void testSortCFR() {
         LinkedList<Race> sorted = new LinkedList<Race>();
-        sorted.add(new Race("actor", 20, 1));
-        sorted.add(new Race("test", 23, 13));
         sorted.add(new Race("zanzibar", 20, 19));
+        sorted.add(new Race("test", 23, 13));
+        sorted.add(new Race("actor", 20, 1));
         test.sortCFR();
         while (!sorted.isEmpty()) {
             assertEquals(sorted.remove().getRaceName(), ((Race)test

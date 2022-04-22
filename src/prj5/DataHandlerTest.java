@@ -35,7 +35,7 @@ public class DataHandlerTest extends TestCase {
      * Testing setup
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void test() throws ParseException{
+    public void test() throws ParseException {
         LinkedList<State> states = reader.getStates();
         Iterator<State> iter = states.iterator();
 

@@ -15,7 +15,8 @@ package prj5;
  * @param <T>
  *            is a generic value
  * 
- * @author Sam
+ * @author Sam Sam
+ * @version 1.0
  *
  */
 public interface LinkedListInterface<T> {

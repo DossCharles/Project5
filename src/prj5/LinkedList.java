@@ -40,18 +40,6 @@ public class LinkedList<E> implements LinkedListInterface<E> {
 
 
     /**
-     * Constructs a list with a first node
-     * 
-     * @param firstNode
-     *            is our firstNode
-     */
-    public LinkedList(Node<E> firstNode) {
-        first = firstNode;
-        size = 1;
-    }
-
-
-    /**
      * Adds the param item to the end of the list
      * 
      * @param value
@@ -229,21 +217,6 @@ public class LinkedList<E> implements LinkedListInterface<E> {
          */
         public Node(E d) {
             data = d;
-        }
-
-
-        /**
-         * Creates new node with data d and next node
-         * 
-         * @param d
-         *            data to put in node
-         * @param next
-         *            node to set as next
-         */
-        @SuppressWarnings("unused")
-        public Node(E d, Node<E> next) {
-            data = d;
-            this.next = next;
         }
 
 

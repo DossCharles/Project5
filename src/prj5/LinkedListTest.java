@@ -54,6 +54,8 @@ public class LinkedListTest extends TestCase {
         list1.add("C");
         assertEquals(3, list1.size());
 
+        assertNull(list1.remove("notHere"));
+
         assertEquals("(A, B, C)", list1.toString());
 
         assertEquals("B", list1.remove("B"));
@@ -121,6 +123,7 @@ public class LinkedListTest extends TestCase {
         list1.add("B");
         list1.add("C");
         list1.add("D");
+        list1.add(null);
 
         Iterator<String> iter = list1.iterator();
 
@@ -132,8 +135,17 @@ public class LinkedListTest extends TestCase {
         assertEquals("C", iter.next());
         assertTrue(iter.hasNext());
         assertEquals("D", iter.next());
-        assertFalse(iter.hasNext());
 
+        try {
+            iter.next();
+        }
+        catch (NoSuchElementException e) {
+            assertEquals(null, e.getMessage());
+        }
+        list1.clear();
+        list1.add("1");
+        iter = list1.iterator();
+        iter.next();
         try {
             iter.next();
         }

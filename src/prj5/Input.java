@@ -15,18 +15,30 @@ public class Input {
 
     @SuppressWarnings("rawtypes")
     public static void main(String[] args)
-        throws FileNotFoundException,
-        ParseException {
+        throws FileNotFoundException{
         DataHandler dataHandler = null;
         if (args.length > 0) {
-            dataHandler = new DataHandler(args[0]);
-        }
-        else {
-            dataHandler = new DataHandler(
-                "Cases_and_Deaths_by_race_CRDT_Sep2020.csv");
+            try {
+                dataHandler = new DataHandler(args[0]);
+            }
+            catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
-        LinkedList<State> states = dataHandler.getStates();
+        LinkedList<State> states = null;
+        try {
+            states = dataHandler.getStates();
+        }
+        catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         Iterator stateIterator = states.iterator();
 

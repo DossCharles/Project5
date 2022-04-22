@@ -7,7 +7,7 @@ import java.util.Iterator;
  * 
  * @author James Wallace, Sam Klemic
  * @version 2022/04/21
- * @param E
+ * @param <E>
  *            is the generic
  */
 public class State<E> extends LinkedList<Object> {
