@@ -1,4 +1,4 @@
-package project5;
+package prj5;
 
 /**
  * Creates the Race object.
@@ -104,6 +104,10 @@ public class Race {
             return -1;
         }
         return 0;
+    }
+    
+    public String toString() {
+        return race + " Cases: " + cases + " Deaths: " + deaths;
     }
 
 }

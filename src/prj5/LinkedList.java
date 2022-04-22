@@ -5,7 +5,7 @@
 // do.
 // - Samuel Klemic 9063-12128
 
-package project5;
+package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -38,22 +38,24 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         first = null;
         size = 0;
     }
-    
+
+
     /**
      * Constructs a list with a first node
+     * 
      * @param firstNode
      */
     public LinkedList(Node<E> firstNode) {
         first = firstNode;
         size = 1;
     }
-    
-    
+
+
     /**
      * Adds the param item to the end of the list
      * 
      * @param value
-     *      value to be added to the list
+     *            value to be added to the list
      */
     @Override
     public void add(E value) {
@@ -63,24 +65,26 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         }
         else {
             Node<E> curr = first;
-            
+
             while (curr.next() != null) {
                 curr = curr.next();
             }
-            
+
             curr.setNext(new Node<E>(value));
             size++;
         }
     }
 
+
     /**
      * Removes the last node in the list
+     * 
      * @return data in removed node
      */
     @Override
     public E remove() {
         E removed = null;
-        
+
         if (first == null) {
             throw new IndexOutOfBoundsException("The list is empty");
         }
@@ -91,11 +95,11 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         }
         else {
             Node<E> curr = first;
-            
+
             while (curr.next().next() != null) {
                 curr = curr.next();
             }
-            
+
             removed = curr.next().getData();
             curr.setNext(null);
             size--;
@@ -112,10 +116,10 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         if (value == null) {
             throw new IllegalArgumentException();
         }
-        
+
         Node<E> curr = first;
-        
-        while(curr.next() != null) {
+
+        while (curr.next() != null) {
             if (curr.next().getData() == value) {
                 E removed = curr.next().getData();
                 curr.setNext(curr.next().next());
@@ -124,11 +128,11 @@ public class LinkedList<E> implements LinkedListInterface<E> {
             }
             curr = curr.next();
         }
-        
+
         return null;
     }
 
-    
+
     /**
      * Clears the list
      */
@@ -171,16 +175,17 @@ public class LinkedList<E> implements LinkedListInterface<E> {
     @Override
     public Object[] toArray() {
         Object[] array = new Object[size];
-        
+
         Node<E> curr = first;
         for (int i = 0; i < size; i++) {
             array[i] = curr.getData();
             curr = curr.next();
         }
-        
+
         return array;
     }
-    
+
+
     /**
      * Returns string version of linked list
      * 
@@ -189,20 +194,21 @@ public class LinkedList<E> implements LinkedListInterface<E> {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("(");
-        
+
         Node<E> curr = first;
         for (int i = 0; i < size; i++) {
             builder.append(curr.getData());
-            if (i != size-1) {
+            if (i != size - 1) {
                 builder.append(", ");
             }
             curr = curr.next();
         }
-        
+
         builder.append(")");
         return builder.toString();
     }
-    
+
+
     /**
      * Iterator method creates Iterator object
      *
@@ -212,7 +218,6 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         return new LLIterator<E>();
     }
 
-    
     private static class Node<E> {
         private Node<E> next;
         private E data;
@@ -270,7 +275,8 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         public E getData() {
             return data;
         }
-        
+
+
         /**
          * Sets the data of the node to the param
          * 
@@ -323,11 +329,11 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         public E next() {
             if (hasNext()) {
                 E data = next.getData();
-    
+
                 if (data == null) {
                     throw new NoSuchElementException();
                 }
-    
+
                 next = next.next();
                 return data;
             }
