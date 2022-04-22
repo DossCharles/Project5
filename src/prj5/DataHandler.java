@@ -23,7 +23,7 @@ import list.AList;
  */
 public class DataHandler {
     // Fields
-    private LinkedList<State> states;
+    private LinkedList<State> statesList;
 
     /**
      * Simply calls our method to read said file
@@ -38,7 +38,7 @@ public class DataHandler {
     public DataHandler(String fileName)
         throws FileNotFoundException,
         ParseException {
-        states = readFile(fileName);
+        statesList = readFile(fileName);
     }
 
 
@@ -78,7 +78,7 @@ public class DataHandler {
             }
             currLine.close();
             // Start of organizing our data
-            if (lineCount == 0) {// Start of first line Case
+            if (lineCount == 0) { // Start of first line Case
                 // This variable is only needed for the first line so it should
                 // only be initialized once
                 raceNames = new String[tokens.getLength() / 2];
@@ -93,7 +93,7 @@ public class DataHandler {
                 }
                 lineCount++;
             } // end of first line case
-            else {// Start of every other line case
+            else { // Start of every other line case
                   // Initialization of our token variables
                 cases = new Integer[tokens.getLength() / 2];
                 deaths = new Integer[tokens.getLength() / 2];
@@ -110,10 +110,10 @@ public class DataHandler {
                     if (tokens.getEntry(i).equals("NA")) {
                         tokens.replace(i, "-1");
                     }
-                    if (i <= (tokens.getLength() / 2)) {// first half
+                    if (i <= (tokens.getLength() / 2)) { // first half
                         cases[x++] = (Integer.parseInt(tokens.getEntry(i)));
                     }
-                    else {// Second half of data
+                    else { // Second half of data
                         deaths[y++] = (Integer.parseInt(tokens.getEntry(i)));
                     }
                 } // end of sorting data
@@ -134,7 +134,7 @@ public class DataHandler {
             } // end every other line case
         } // end of parsing data
         return states;
-    }// end of readFile
+    } // end of readFile
 
 
     /**
@@ -143,6 +143,6 @@ public class DataHandler {
      * @return the states
      */
     public LinkedList<State> getStates() {
-        return states;
+        return statesList;
     }
 }

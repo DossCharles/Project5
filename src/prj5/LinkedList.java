@@ -9,7 +9,6 @@ package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import list.ListInterface;
 
 /**
  * Linked List of nodes with implemented methods
@@ -44,6 +43,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
      * Constructs a list with a first node
      * 
      * @param firstNode
+     *            is our firstNode
      */
     public LinkedList(Node<E> firstNode) {
         first = firstNode;
@@ -242,7 +242,8 @@ public class LinkedList<E> implements LinkedListInterface<E> {
          *            node to set as next
          */
         public Node(E d, Node<E> next) {
-
+            data = d;
+            this.next = next;
         }
 
 

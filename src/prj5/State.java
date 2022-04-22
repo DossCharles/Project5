@@ -7,15 +7,13 @@ import java.util.Iterator;
  * 
  * @author James Wallace, Sam Klemic
  * @version 2022/04/21
+ * @param E
+ *            is the generic
  */
-
 public class State<E> extends LinkedList {
 
     // ~ Fields.................................................................
-    /**
-     * The linked list of races.
-     */
-    public LinkedList<Race> raceList;
+    private LinkedList<Race> raceList;
     private String name;
 
     // ~ Constructor............................................................
@@ -57,6 +55,8 @@ public class State<E> extends LinkedList {
 
     /**
      * Sorts the raceList in alphabetical order.
+     * 
+     * @return the sorted list
      */
     public LinkedList<Race> sortAlpha() {
         String alphabetReference = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -89,6 +89,8 @@ public class State<E> extends LinkedList {
     /**
      * Sorts the raceList by CFR.
      * Uses insertion sort to sort based on CFR
+     * 
+     * @return the sorted list
      */
     public LinkedList<Race> sortCFR() {
         LinkedList<Race> sortedList = new LinkedList<Race>();

@@ -8,7 +8,7 @@ package prj5;
  */
 public class Race {
     // ~ Fields.................................................................
-    private String race;
+    private String raceName;
     private int cases;
     private int deaths;
 
@@ -25,7 +25,7 @@ public class Race {
      */
 
     public Race(String race, Integer cases, Integer deaths) {
-        this.race = race;
+        this.raceName = race;
         this.cases = cases;
         this.deaths = deaths;
     }
@@ -39,7 +39,7 @@ public class Race {
      * @return the name of the race.
      */
     public String getRaceName() {
-        return race;
+        return raceName;
     }
 
 
@@ -80,9 +80,11 @@ public class Race {
 
     /**
      * Returns string value of race
+     * 
+     * @return the string name with cases and its CFR
      */
     public String toString() {
-        return race + ": " + cases + " cases, " + getCFR() + "% CFR";
+        return raceName + ": " + cases + " cases, " + getCFR() + "% CFR";
     }
 
 
@@ -92,7 +94,7 @@ public class Race {
      * @return race deaths and cases
      */
     public String toString2() {
-        return race + " Cases: " + cases + " Deaths: " + deaths;
+        return raceName + " Cases: " + cases + " Deaths: " + deaths;
     }
 
 }

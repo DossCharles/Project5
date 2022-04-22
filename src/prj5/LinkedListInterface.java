@@ -13,6 +13,7 @@ package prj5;
  * - Sam Klemic 9063-12128
  * 
  * @param <T>
+ *            is a generic value
  * 
  * @author Sam
  *

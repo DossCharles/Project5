@@ -12,8 +12,6 @@ import student.TestCase;
 public class RaceTest extends TestCase {
     // ~ Fields.................................................................
     private Race test;
-    private Race more;
-    private Race less;
 
     // ~ Methods................................................................
 
@@ -22,8 +20,6 @@ public class RaceTest extends TestCase {
      */
     public void setUp() {
         test = new Race("test", 23, 13);
-        more = new Race("zanzibar", 20, 19);
-        less = new Race("actor", 20, 1);
     }
 
 
@@ -39,6 +35,9 @@ public class RaceTest extends TestCase {
     }
 
 
+    /**
+     * Testing to string
+     */
     public void testToString() {
         assertEquals("test: 23 cases, 56.5% CFR", test.toString());
     }
