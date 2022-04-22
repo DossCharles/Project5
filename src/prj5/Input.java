@@ -13,40 +13,48 @@ import java.util.Iterator;
  */
 public class Input {
 
-    public static void main(String[] args) throws FileNotFoundException, ParseException {
+    @SuppressWarnings("rawtypes")
+    public static void main(String[] args)
+        throws FileNotFoundException,
+        ParseException {
+        DataHandler dataHandler = null;
+        if (args.length > 0) {
+            dataHandler = new DataHandler(args[0]);
+        }
+        else {
+            dataHandler = new DataHandler(
+                "Cases_and_Deaths_by_race_CRDT_Sep2020.csv");
+        }
 
-        DataHandler dataHandler = new DataHandler("Cases_and_Deaths_by_race_CRDT_Sep2020.csv");
         LinkedList<State> states = dataHandler.getStates();
-        
+
         Iterator stateIterator = states.iterator();
-        
+
         while (stateIterator.hasNext()) {
             State currentState = (State)stateIterator.next();
-            
+
             // Print alphabetical sort
             currentState.sortAlpha();
-            
+
             System.out.println(currentState.getStateName());
             Iterator raceIteratorA = currentState.getRaceList().iterator();
             while (raceIteratorA.hasNext()) {
                 Race currentRace = (Race)raceIteratorA.next();
-                
+
                 System.out.println(currentRace.toString());
             }
             System.out.println("=====");
-            
+
             // Print CFR sort
             currentState.sortCFR();
-            
+
             Iterator raceIteratorCFR = currentState.getRaceList().iterator();
             while (raceIteratorCFR.hasNext()) {
                 Race currentRace = (Race)raceIteratorCFR.next();
-                
+
                 System.out.println(currentRace.toString());
             }
             System.out.println("=====");
         }
-        
     }
-
 }

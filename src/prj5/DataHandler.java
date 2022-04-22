@@ -23,6 +23,7 @@ import list.AList;
  */
 public class DataHandler {
     // Fields
+    @SuppressWarnings("rawtypes")
     private LinkedList<State> statesList;
 
     /**
@@ -53,6 +54,7 @@ public class DataHandler {
      * @throws ParseException
      *             if parsing goes wrong
      */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private LinkedList<State> readFile(String fileName)
         throws FileNotFoundException,
         ParseException {
@@ -94,7 +96,7 @@ public class DataHandler {
                 lineCount++;
             } // end of first line case
             else { // Start of every other line case
-                  // Initialization of our token variables
+                   // Initialization of our token variables
                 cases = new Integer[tokens.getLength() / 2];
                 deaths = new Integer[tokens.getLength() / 2];
                 races = new LinkedList<Race>();
@@ -142,7 +144,8 @@ public class DataHandler {
      * 
      * @return the states
      */
-    public LinkedList<State> getStates() {
+    @SuppressWarnings("rawtypes")
+    public LinkedList<State> getStates() throws ParseException {
         return statesList;
     }
 }

@@ -10,7 +10,7 @@ import java.util.Iterator;
  * @param E
  *            is the generic
  */
-public class State<E> extends LinkedList {
+public class State<E> extends LinkedList<Object> {
 
     // ~ Fields.................................................................
     private LinkedList<Race> raceList;
@@ -69,7 +69,7 @@ public class State<E> extends LinkedList {
         // Doesn't account for two items of the same letter, but none of the
         // races are like that in use case
         for (int i = 0; i < alphabetReference.length(); i++) {
-            Iterator iterator = raceList.iterator();
+            Iterator<Race> iterator = raceList.iterator();
 
             while (iterator.hasNext()) {
                 Race currentRace = (Race)iterator.next();

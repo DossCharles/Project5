@@ -1,5 +1,7 @@
 package prj5;
 
+import java.text.DecimalFormat;
+
 /**
  * Creates the Race object.
  * 
@@ -69,12 +71,12 @@ public class Race {
      * @return the CFR rounded to 1 decimal.
      */
     public double getCFR() {
-        double temp = ((double)deaths / cases) * 100;
-        if (temp == 100 || temp < 0) {
+        if (deaths == -1 || cases == -1) {
             return -1;
         }
-        double scale = 10.0;
-        return Math.round(temp * scale) / scale;
+        double cfr = (((double)deaths / cases) * 100);
+        DecimalFormat df = new DecimalFormat("##.#");
+        return Double.parseDouble(df.format(cfr));
     }
 
 
@@ -84,7 +86,20 @@ public class Race {
      * @return the string name with cases and its CFR
      */
     public String toString() {
-        return raceName + ": " + cases + " cases, " + getCFR() + "% CFR";
+        StringBuilder s = new StringBuilder();
+        s.append(this.getRaceName());
+        s.append(": ");
+        s.append(this.getCases());
+        s.append(" cases, ");
+        if (this.getCFR() % 1 == 0) {
+            int intValue = (int)(this.getCFR());
+            s.append(intValue);
+        }
+        else {
+            s.append(this.getCFR());
+        }
+        s.append("% CFR");
+        return s.toString();
     }
 
 

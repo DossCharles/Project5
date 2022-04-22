@@ -10,7 +10,7 @@ import student.TestCase;
  */
 public class StateTest extends TestCase {
     // ~ Fields.................................................................
-    private State test;
+    private State<?> test;
     private LinkedList<Race> raceList;
 
     // ~ Methods................................................................
@@ -22,7 +22,7 @@ public class StateTest extends TestCase {
         raceList.add(new Race("test", 23, 13));
         raceList.add(new Race("zanzibar", 20, 19));
         raceList.add(new Race("actor", 20, 1));
-        test = new State("Virginia", raceList);
+        test = new State<Object>("Virginia", raceList);
     }
 
 

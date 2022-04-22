@@ -171,7 +171,6 @@ public class LinkedList<E> implements LinkedListInterface<E> {
      * 
      * @return array
      */
-    @SuppressWarnings("unchecked")
     @Override
     public Object[] toArray() {
         Object[] array = new Object[size];
@@ -241,6 +240,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
          * @param next
          *            node to set as next
          */
+        @SuppressWarnings("unused")
         public Node(E d, Node<E> next) {
             data = d;
             this.next = next;
@@ -283,6 +283,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
          * 
          * @param value
          */
+        @SuppressWarnings("unused")
         public void setData(E value) {
             data = value;
         }
@@ -296,6 +297,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
      *
      * @param <E>
      */
+    @SuppressWarnings("hiding")
     private class LLIterator<E> implements Iterator<E> {
 
         private Node<E> next;
@@ -303,6 +305,7 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         /**
          * Creates a new DLListIterator
          */
+        @SuppressWarnings("unchecked")
         public LLIterator() {
             next = (Node<E>)first;
         }

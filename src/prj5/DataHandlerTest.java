@@ -35,7 +35,7 @@ public class DataHandlerTest extends TestCase {
      * Testing setup
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void test() {
+    public void test() throws ParseException{
         LinkedList<State> states = reader.getStates();
         Iterator<State> iter = states.iterator();
 
@@ -51,5 +51,16 @@ public class DataHandlerTest extends TestCase {
         Iterator<Race> iter3 = testState.getRaceList().iterator();
         assertEquals(iter3.next().toString2(),
             "White Cases: 70678 Deaths: 1924");
+
+        Iterator<State> iter4 = states.iterator();
+        iter4.next();
+        iter4.next();
+        iter4.next();
+        iter4.next();
+        iter4.next();
+        State testState2 = iter4.next();
+        System.out.print(testState2.sortAlpha().toString() + "\n");
+        System.out.print(testState2.sortCFR().toString());
+
     }
 }
