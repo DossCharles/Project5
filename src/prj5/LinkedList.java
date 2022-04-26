@@ -104,6 +104,17 @@ public class LinkedList<E> implements LinkedListInterface<E> {
         if (value == null) {
             throw new IllegalArgumentException();
         }
+        
+        if (first.getData() == value) {
+            E removed = first.getData();
+            if (first.next() != null) {
+                first = first.next();
+            }
+            else {
+                first = null;
+            }
+            return removed;
+        }
 
         Node<E> curr = first;
 

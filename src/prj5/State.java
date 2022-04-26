@@ -74,6 +74,9 @@ public class State<E> extends LinkedList<Object> {
             while (iterator.hasNext()) {
                 Race currentRace = (Race)iterator.next();
                 char raceChar = (currentRace.getRaceName()).charAt(0);
+                // Ensures char is capitalized
+                raceChar = Character.toUpperCase(raceChar);
+                
                 if (raceChar == alphabetReference.charAt(i)) {
                     sortedList.add(currentRace);
                 }
@@ -88,28 +91,44 @@ public class State<E> extends LinkedList<Object> {
 
     /**
      * Sorts the raceList by CFR.
-     * Uses insertion sort to sort based on CFR
+     * Uses selection sort to sort based on CFR
+     * Returns sorted list
+     * Largest CFR -> Smallest CFR (-1 at the end)
      * 
+     *  
      * @return the sorted list
      */
     public LinkedList<Race> sortCFR() {
+        //Ensures -1 values are added alphabetically
+        sortAlpha();
+        
         LinkedList<Race> sortedList = new LinkedList<Race>();
-
-        Object[] raceArray = raceList.toArray();
-
-        for (int i = 1; i < raceArray.length; i++) {
-            Race currentRace = (Race)raceArray[i];
-            double currentRaceCFR = currentRace.getCFR();
-            int j = i - 1;
-            while (j >= 0 && currentRaceCFR > ((Race)raceArray[j]).getCFR()) {
-                raceArray[j + 1] = raceArray[j];
-                j--;
+        
+        int initialRaceSize = raceList.size();
+        
+        for (int i = 0; i < initialRaceSize; i++) {
+            Iterator<Race> raceIterator = raceList.iterator();
+            
+            
+            Race currentRace = raceIterator.next();
+            
+            Race maxRace = currentRace;
+            
+            while (raceIterator.hasNext()) {
+                
+                if (currentRace.getCFR() > maxRace.getCFR()) {
+                    maxRace = currentRace;
+                }
+                
+                currentRace = raceIterator.next();
             }
-            raceArray[j + 1] = currentRace;
-        }
-
-        for (int i = 0; i < raceArray.length; i++) {
-            sortedList.add((Race)raceArray[i]);
+            
+            // One more check for last value
+            if (currentRace.getCFR() > maxRace.getCFR()) {
+                maxRace = currentRace;
+            }
+            
+            sortedList.add(raceList.remove(maxRace));
         }
 
         raceList = sortedList;
