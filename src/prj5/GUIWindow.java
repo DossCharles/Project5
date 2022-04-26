@@ -32,7 +32,7 @@ public class GUIWindow {
     private int barsX = 135;
     private int barsY = 225;
     private int barsWidth = 35;
-    private int heightMultiplier = 25;
+    private int heightMultiplier = 20;
 
     /**
      * Constructs the window
@@ -87,7 +87,9 @@ public class GUIWindow {
             window.addButton(stateButtons[i], WindowSide.SOUTH);
         }
 
+        
         updateBars();
+        updateTitle();
 
     }
 
@@ -101,6 +103,7 @@ public class GUIWindow {
     public void clickedAlpha(Button button) {
         displayedState.sortAlpha();
         updateBars();
+        updateTitle();
 
     }
 
@@ -114,7 +117,7 @@ public class GUIWindow {
     public void clickedCFR(Button button) {
         displayedState.sortCFR();
         updateBars();
-
+        updateTitle();
     }
 
 
@@ -164,6 +167,18 @@ public class GUIWindow {
         }
 
     }
+    
+    /**
+     * Updates the title
+     */
+    private void updateTitle() {
+        // Add title to top of graph
+        String titleMessage = displayedState.getStateName()
+            + " Case Fatality Ratios by Race";
+        
+        TextShape titleShape = new TextShape(270, 5, titleMessage, Color.BLACK);
+        window.addShape(titleShape);
+    }
 
 
     /**
@@ -181,6 +196,7 @@ public class GUIWindow {
             if (currentState.getStateName().equals("DC")) {
                 displayedState = currentState;
                 updateBars();
+                updateTitle();
                 break;
             }
         }
@@ -202,6 +218,7 @@ public class GUIWindow {
             if (currentState.getStateName().equals("GA")) {
                 displayedState = currentState;
                 updateBars();
+                updateTitle();
                 break;
             }
         }
@@ -223,6 +240,7 @@ public class GUIWindow {
             if (currentState.getStateName().equals("MD")) {
                 displayedState = currentState;
                 updateBars();
+                updateTitle();
                 break;
             }
         }
@@ -244,6 +262,7 @@ public class GUIWindow {
             if (currentState.getStateName().equals("NC")) {
                 displayedState = currentState;
                 updateBars();
+                updateTitle();
                 break;
             }
         }
@@ -265,6 +284,7 @@ public class GUIWindow {
             if (currentState.getStateName().equals("TN")) {
                 displayedState = currentState;
                 updateBars();
+                updateTitle();
                 break;
             }
         }
@@ -286,6 +306,7 @@ public class GUIWindow {
             if (currentState.getStateName().equals("VA")) {
                 displayedState = currentState;
                 updateBars();
+                updateTitle();
                 break;
             }
         }
