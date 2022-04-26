@@ -30,6 +30,20 @@ public class Input {
                 e.printStackTrace();
             }
         }
+        else {
+            // If no argument is found use default data
+            try {
+                dataHandler = new DataHandler("Cases_and_Deaths_by_race_CRDT_Sep2020.csv");
+            }
+            catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
         LinkedList<State> states = null;
         try {
@@ -39,6 +53,8 @@ public class Input {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
+        GUIWindow window = new GUIWindow(states);
 
         Iterator stateIterator = states.iterator();
 
