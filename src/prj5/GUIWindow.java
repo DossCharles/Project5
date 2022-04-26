@@ -179,7 +179,7 @@ public class GUIWindow {
         TextShape titleShape = new TextShape(270, 5, titleMessage, Color.BLACK);
         window.addShape(titleShape);
     }
-
+    
 
     /**
      * Changes the displayed state to DC
