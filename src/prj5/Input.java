@@ -5,7 +5,14 @@ import java.text.ParseException;
 import java.util.Iterator;
 
 /**
- * Takes file input and includes the main method
+ * Takes file input, generates GUI window and outputs data to console
+ * 
+ * 
+ * Virginia Tech Honor Code Pledge:
+ * As a Hokie, I will conduct myself with honor and integrity at all times.
+ * I will not lie, cheat, or steal, nor will I accept the actions of those who
+ * do.
+ * - Sam Klemic 9063-12128
  * 
  * @author Sam
  *

@@ -3,7 +3,14 @@ package prj5;
 import java.text.DecimalFormat;
 
 /**
- * Creates the Race object.
+ * Race class used as type in LinkedList
+ * 
+ * Virginia Tech Honor Code Pledge:
+ * As a Hokie, I will conduct myself with honor and integrity at all times.
+ * I will not lie, cheat, or steal, nor will I accept the actions of those who
+ * do.
+ * - James Wallace
+ * 
  * 
  * @author James Wallace
  * @version 2022/04/19
@@ -82,6 +89,7 @@ public class Race {
 
     /**
      * Returns string value of race
+     * Used for Console data output
      * 
      * @return the string name with cases and its CFR
      */
