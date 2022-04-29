@@ -152,6 +152,13 @@ public class GUIWindow {
             bars[i].setBackgroundColor(Color.BLUE);
             bars[i].setForegroundColor(Color.BLACK);
 
+
+            // Create N/A text if bar is 0            
+            if (barHeight <= 0) {
+                TextShape naText = new TextShape(adjustedBarX + 5, barsY - 15, "N/A", Color.BLACK);
+                window.addShape(naText);
+            }
+            
             // Create text for bottom of bar
             String raceText = currentRace.getRaceName();
             String CFRText = currentRace.getCFR() + "%";
@@ -159,6 +166,7 @@ public class GUIWindow {
                 raceText, Color.BLACK);
             TextShape raceCFRShape = new TextShape(adjustedBarX, barsY + 25,
                 CFRText, Color.BLACK);
+            
 
             // Add bar shape and text to window
             window.addShape(bars[i]);
